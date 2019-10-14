@@ -11,7 +11,7 @@ void setup() {
   size(600,600);
   background(0);
   randomTests = new randomShape[width/100*height/100];
-  smooth();
+
   
   for(int x= 0; x<randomTests.length; x++) {
     for (int y=0; y< randomTests.length; y++) {
@@ -19,6 +19,7 @@ void setup() {
         randomTests[x].build();
     }
   }
+  smooth();
 }
 
 class randomShape {
@@ -42,7 +43,7 @@ class randomShape {
       strokeWeight(int(random(1,2)));
       stroke(0);
       noFill();
-      rotate(int(random(0,360)));
+      rotate(TWO_PI/int(random(1,8)));
       line(-25, 0, 25, 0);
     popMatrix();
   }
