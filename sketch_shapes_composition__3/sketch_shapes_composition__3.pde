@@ -5,11 +5,12 @@ void setup() {
   background(#010B40);
   smooth();
   translate(width/2, height/2);
-  factorialRectangle(500);
+  factorialRectangle(int(random(500,2000)));
 }
 
 float factorialRectangle(float n) {
   rotate(radians(n));
+  translate(int(random(-width/4,width/4)),int(random(-height/4,height/4)));
   strokeWeight(int(random(2,3)));
   stroke(circleColors[int(random(0,3))]);
   noFill();
