@@ -43,7 +43,7 @@ class randomShape {
       strokeWeight(int(random(1,2)));
       stroke(0);
       noFill();
-      rotate(TWO_PI/int(random(1,8)));
+      rotate(TWO_PI/int(random(1,8  )));
       line(-25, 0, 25, 0);
     popMatrix();
   }
