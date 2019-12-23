@@ -3,6 +3,10 @@ int diametre = int(random(border/4, border));
 
 int[] colors = { #ffffff, #000000 };
 
+boolean randomBool() {
+  return random(1) > .5;
+}
+
 void setup() {
   size(600,600);
   background(0);
@@ -14,7 +18,10 @@ void setup() {
   for(int x=0; x<=width; x+=border) {
     for(int y=0; y<=height; y+=border) {
       int filledColor= int(random(0,colors.length));
-      if (filledColor == 1) {
+      boolean hasShape = randomBool();
+      
+
+      if ((filledColor == 1) && (hasShape)) {
        int diametreEllipse = int(random(border/4,border/2));
        fill(colors[0]);
        ellipse(x-border/2, y-border/2, diametreEllipse, diametreEllipse);
