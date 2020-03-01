@@ -1,4 +1,27 @@
+import processing.pdf.*;
+
+/* FORMAT INFOS
+ a4: {
+   width: 2480,
+   height: 3508
+ }
+ a5: {
+   width: 1748,
+   height: 2480
+ },
+ a6: {
+   width: 1240,
+   height: 1748
+ }
+*/
+
 /* THEMES COLORS */
+int backgroundWhite = #FFFFFF;
+int blackTheme = #000000;
+
+int backgroundBlack = #000000;
+int whiteTheme = #FFFFFF;
+
 int backgroundColorTheme1 = #010B40;
 int[] colorTheme1 = { #020873, #040DBF, #040FD9, #F2E74B };
 
@@ -10,7 +33,7 @@ int[] colorTheme3 = { #F24E29, #F2AE30, #78BFAB, #D93B84 };
 /* -------------- */
 
 void setup() {
- size(600,600);
+ size(1748, 2480, PDF, "shapes-1-theme-3.pdf");
  background(backgroundColorTheme3);
  smooth();
 
@@ -35,4 +58,7 @@ void setup() {
    popMatrix();
    }
  }
+ 
+  println("Finished.");
+  exit();
 }

@@ -1,31 +1,60 @@
-randomShape[] randomTests;
+import processing.pdf.*;
+
+randomShape[] randomShapes;
+
+/* FORMAT INFOS
+ a4: {
+   width: 2480,
+   height: 3508
+ }
+ a5: {
+   width: 1748,
+   height: 2480
+ },
+ a6: {
+   width: 1240,
+   height: 1748
+ }
+*/
 
 /* THEMES COLORS */
-int[] colorTheme1 = { #020873, #040DBF, #040FD9, #F2E74B };
-int[] colorTheme2 = { #F25E3D, #F2D335, #25D997, #D91A96 };
-int[] colorTheme3 = { #F24E29, #F2AE30, #78BFAB, #D93B84 };
-int[] colorTheme4 = { #08348C, #BFAC4E, #D9D8D7, #F2A099};
+int backgroundWhite = #FFFFFF;
+int blackTheme = #000000;
+
+int backgroundBlack = #000000;
+int whiteTheme = #FFFFFF;
+
+int[] colorTheme1 = { #010B40, #020873, #040DBF, #040FD9, #F2E74B };
+
+int[] colorTheme2 = { #010B40, #F25E3D, #F2D335, #25D997, #D91A96 };
+
+int[] colorTheme3 = { #FFFFFF, #F24E29, #F2AE30, #78BFAB, #D93B84 };
 /* -------------- */
 
-void setup() {
-  size(600,600);
-  background(0);
-  randomTests = new randomShape[width/100*height/100];
 
-  
-  for(int x= 0; x<randomTests.length; x++) {
-    for (int y=0; y< randomTests.length; y++) {
-        randomTests[x] = new randomShape(x*100, y*100);
-        randomTests[x].build();
+int levelPrecision = 35;
+
+void setup() {
+  size(1748, 2480, PDF, "shapes-4-theme-1.pdf");
+  background(backgroundWhite);
+  randomShapes = new randomShape[20*20];
+
+  smooth();
+  for(int x = 0; x < randomShapes.length - 1; x++) {
+    for (int y = 0; y < randomShapes.length - 1; y++) {
+      randomShapes[x] = new randomShape(x*levelPrecision, y*levelPrecision);
+      randomShapes[x].build();
     }
   }
-  smooth();
+  
+  println("Finished.");
+  exit();
 }
 
 class randomShape {
   int posX;
   int posY;
-  int filledColor= int(random(0,colorTheme4.length));
+  int filledColor= int(random(0,colorTheme1.length));
   
   randomShape(int tmpPosX, int tmpPosY) {
     posX = tmpPosX;
@@ -33,18 +62,17 @@ class randomShape {
   }
   
   void build() {
-
-    fill(colorTheme4[filledColor]);
+    fill(backgroundWhite);
+    fill(colorTheme1[filledColor]);
     noStroke();
     rect(posX, posY, 100, 100);
-    
     pushMatrix();
-      translate(posX+50, posY+50);
-      strokeWeight(int(random(1,2)));
-      stroke(0);
+      translate(posX, posY);
+      strokeWeight(int(random(1,3)));
+     // stroke(blackTheme);
       noFill();
       rotate(TWO_PI/int(random(1,8  )));
-      line(-25, 0, 25, 0);
+      line(-levelPrecision/4, 0, levelPrecision/4, 0);
     popMatrix();
   }
 }
