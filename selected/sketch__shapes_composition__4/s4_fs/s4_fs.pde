@@ -38,16 +38,15 @@ int posY = 0;
 int size = 50;
 int border = 100;
 //int(random(50,50));
-int numberRect = 300;
+int numberRect = 500 ;
 
-/*int[][] colorSchemes= {
-  {#C7D1D9, #054159, #3E768C, #5D98A6, #9BB9BF}
-};
-*/
+int backgroundColor = backgroundBlack;
+
+String pdfName = "exports/shapes-4-bonus-" + numberRect + "-FS.pdf";
 
 void setup() {
-  size(1748, 2480, PDF, "shapes-3-theme-3.pdf");
-  background(backgroundColorTheme2);
+  size(1748, 2480, PDF, pdfName);
+  background(backgroundColor);
   frameRate(20);
 
   for (int i=0; i <= numberRect; i+=1) {
@@ -71,22 +70,33 @@ void drawRect() {
   println(randR);
   boolean isFilled = randomBool();
  
-  int colorScheme = colorTheme2[int(random(1,4))];
-  //int colorScheme = whiteTheme;
+  //int colorScheme = colorTheme3[int(random(1,4))];
+  int colorScheme = whiteTheme;
   pushMatrix();
   translate(width/2,height/2);
   rotate(randR);
   if (!isFilled) {
-    fill(backgroundColorTheme2);
+    fill(backgroundColor);
     strokeWeight(int(random(2,6)));  
     stroke(colorScheme, random(0,1));
 
   } else {
-    strokeWeight(2);
-    stroke(colorTheme2[int(random(1,4))]);
+    strokeWeight(int(random(2,6)));
+    stroke(backgroundColor);
+    //stroke(colorTheme3[int(random(1,4))]);
     fill(colorScheme);
   }
-
-  rect(int(random(-width/5,width/5)),int(random(-height/4,height/4)),randS,randS);
+  /*
+  BONUS PARAMS:
+    posX,
+    posY,
+    width,
+    height,
+    radius top-left,
+    radius top-right,
+    radius bottom-right,
+    radius bottom-left,   
+  */  
+  rect(int(random(-width/5,width/5)),int(random(-height/4,height/4)),randS,randS, int(random(0,18)), int(random(0,18)), int(random(0,18)), int(random(0,18)));
   popMatrix();
 }
